@@ -16,6 +16,9 @@ import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
+import { DatatableComponent } from '../../datatable/datatable.component';
+import { DataTablesModule } from 'angular-datatables';
+import { HttpModule } from '@angular/http';
 
 import {
   MatButtonModule,
@@ -23,15 +26,21 @@ import {
   MatRippleModule,
   MatTooltipModule,
 } from '@angular/material';
+import { InstituicaoService } from '../../instituicao.service';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    HttpModule,
+    HttpClientModule,
     MatButtonModule,
     MatRippleModule,
     MatInputModule,
     MatTooltipModule,
+    DataTablesModule,
   ],
   declarations: [
     CrudEmpresasComponent,
@@ -39,6 +48,7 @@ import {
     CrudProdutosComponent,
     CrudUsuariosComponent,
     DashboardComponent,
+    DatatableComponent,
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
@@ -46,7 +56,10 @@ import {
     TypographyComponent,
     UpgradeComponent,
     UserProfileComponent,
-  ]
+  ],
+  providers: [
+    InstituicaoService
+  ],
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }
