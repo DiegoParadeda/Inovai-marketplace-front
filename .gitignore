@@ -6,6 +6,10 @@ e2e_test.*
 node_modules
 bower_components
 tools/gulp-tasks/cldr/cldr-data/
+__MACOSX
+documentation
+e2e
+typings
 
 # Include when developing application packages.
 pubspec.lock
