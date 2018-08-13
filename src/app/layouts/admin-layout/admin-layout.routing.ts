@@ -12,6 +12,7 @@ import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
+import { DatatableComponent } from '../../datatable/datatable.component'
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -61,6 +62,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'crud-empresas',      component: CrudEmpresasComponent },
     { path: 'crud-produtos',      component: CrudProdutosComponent },
     { path: 'crud-usuarios',      component: CrudUsuariosComponent },
+    { path: 'table-table',      component: DatatableComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },

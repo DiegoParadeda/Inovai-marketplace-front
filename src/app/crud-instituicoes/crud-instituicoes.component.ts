@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InstituicaoService } from '../instituicao.service';
 
 @Component({
   selector: 'app-crud-instituicoes',
@@ -12,9 +13,15 @@ export class CrudInstituicoesComponent implements OnInit {
   ];
   selectedInstituicao: any;
   createOrEdit = false;
-  constructor() { }
+  constructor(private instituicaoService: InstituicaoService) { }
 
   ngOnInit() {
+      this.instituicaoService.list(10, 0).subscribe((success: any) => {
+        console.log(success);
+      }, error => {
+          console.log("ERROR");
+          console.log(error);
+      })
   }
 
   create() {
