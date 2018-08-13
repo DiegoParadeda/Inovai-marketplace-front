@@ -1,0 +1,105 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title ">Empresas</h4>
+            <p class="card-category"> Crie, modifique e delete.</p>
+            <button class="btn pull-right btn-round btn-sm" mat-raised-button type="button" (click)="edit(inst)" matTooltip="Criar" [matTooltipPosition]="'above'" (click)="create()" style="margin-top: -40px; background: white;">
+              <i class="material-icons text-primary">add</i>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Escopo</th>
+                  <th>Cidade</th>
+                  <th>Empresas</th>
+                  <th>Funções</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let inst of empresaList">
+                    <td>{{inst.id}}</td>
+                    <td>{{inst.nome}}</td>
+                    <td>{{inst.escopo}}</td>
+                    <td>{{inst.cidade}}</td>
+                    <td>{{inst.produtos}}</td>
+                    <td class="td-actions">
+                      <button mat-raised-button type="button" (click)="edit(inst)" matTooltip="Editar" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button mat-raised-button type="button" matTooltip="Deletar" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- END EMPRESA TABLE -->
+        <div>
+          <br>
+        </div>
+        <!-- NEW EMPRESA TABLE BEGIN -->
+        <div class="card" *ngIf="createOrEdit">
+          <div class="card-header " [class]="selectedEmpresa.id ? 'card-header-warning' : 'card-header-primary'">
+            <h4 class="card-title">{{selectedEmpresa.id ? "Editar" : "Criar"}} Empresa</h4>
+            <p class="card-category">Insira um perfil</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nome" type="text">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Escopo" type="text">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Cidade" type="text">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Endereço" type="text">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Sobre</label>
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Descrição"></textarea>
+                  </mat-form-field>
+                  <!-- <div class="form-group">
+
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                    <textarea class="form-control" rows="5"></textarea>
+                                </div>
+                            </div> -->
+                </div>
+              </div>
+              <button mat-raised-button type="submit" (click)="createOrEdit=false" class="btn btn-danger pull-right">Criar</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+        <!-- END NEW EMPRESA TABLE -->
+      </div>
+    </div>
+  </div>
+</div>
