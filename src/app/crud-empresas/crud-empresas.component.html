@@ -6,7 +6,7 @@
           <div class="card-header card-header-primary">
             <h4 class="card-title ">Empresas</h4>
             <p class="card-category"> Crie, modifique e delete.</p>
-            <button class="btn pull-right btn-round btn-sm" mat-raised-button type="button" (click)="edit(inst)" matTooltip="Criar" [matTooltipPosition]="'above'" (click)="create()" style="margin-top: -40px; background: white;">
+            <button class="btn pull-right btn-round btn-sm" mat-raised-button type="button" matTooltip="Criar" [matTooltipPosition]="'above'" (click)="create()" style="margin-top: -40px; background: white;">
               <i class="material-icons text-primary">add</i>
             </button>
           </div>
@@ -39,6 +39,7 @@
                   </tr>
                 </tbody>
               </table>
+              <button mat-raised-button type="submit" class="btn btn-primary pull-right" (click)="create()">Adicionar</button>
             </div>
           </div>
         </div>
@@ -93,7 +94,7 @@
                             </div> -->
                 </div>
               </div>
-              <button mat-raised-button type="submit" (click)="createOrEdit=false" class="btn btn-danger pull-right">Criar</button>
+              <button mat-raised-button type="submit" (click)="createOrEdit=false" class="btn btn-primary pull-right">Criar</button>
               <div class="clearfix"></div>
             </form>
           </div>

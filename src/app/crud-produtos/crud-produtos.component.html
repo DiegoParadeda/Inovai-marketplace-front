@@ -6,7 +6,8 @@
           <div class="card-header card-header-success">
             <h4 class="card-title ">Produtos</h4>
             <p class="card-category"> Crie, modifique e delete.</p>
-            <button class="btn pull-right btn-round btn-sm" mat-raised-button type="button" (click)="edit(inst)" matTooltip="Criar" [matTooltipPosition]="'above'" (click)="create()" style="margin-top: -40px; background: white;">
+            <button class="btn pull-right btn-round btn-sm" mat-raised-button type="button" (click)="edit(inst)" matTooltip="Criar" [matTooltipPosition]="'above'"
+              (click)="create()" style="margin-top: -40px; background: white;">
               <i class="material-icons text-success">add</i>
             </button>
           </div>
@@ -39,6 +40,7 @@
                   </tr>
                 </tbody>
               </table>
+              <button mat-raised-button type="submit" class="btn btn-success pull-right" (click)="create()">Adicionar</button>
             </div>
           </div>
         </div>
