@@ -1,7 +1,18 @@
-.dataTables_filter {
-    border: none !important;
+::ng-deep .dataTables_filter {
+    input {
+      border-width: 0 0 3px 0 !important;
+      color: #495057 !important;
+    }
 }
+
+.no-sort::after { display: none!important; }
+
+.no-sort { pointer-events: none!important; cursor: default!important; }
 
 .card-title {
     font: 100px !important;
+}
+
+.hide {
+  display: none !important;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
 }
