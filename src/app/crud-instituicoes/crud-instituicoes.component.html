@@ -1,106 +1,92 @@
 <div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-danger">
-            <h4 class="card-title ">Instituições</h4>
-            <p class="card-category"> Crie, modifique e delete.</p>
-            <button class="btn pull-right btn-round btn-sm" mat-raised-button type="button" (click)="edit(inst)" matTooltip="Criar" [matTooltipPosition]="'above'"title="Adicionar" (click)="create()" style="margin-top: -40px; background: white;">
-              <i class="material-icons text-danger">add</i>
-            </button>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class=" text-primary">
-                  <th>ID</th>
-                  <th>Nome</th>
-                  <th>Escopo</th>
-                  <th>Cidade</th>
-                  <th>Empresas</th>
-                  <th>Funções</th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let inst of instituicaoList">
-                    <td>{{inst.id}}</td>
-                    <td>{{inst.nome}}</td>
-                    <td>{{inst.escopo}}</td>
-                    <td>{{inst.cidade}}</td>
-                    <td>{{inst.empresas}}</td>
-                    <td class="td-actions">
-                      <button mat-raised-button type="button" (click)="edit(inst)" matTooltip="Editar" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                        <i class="material-icons">edit</i>
-                      </button>
-                      <button mat-raised-button type="button" matTooltip="Deletar" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                        <i class="material-icons">delete</i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="create()">Adicionar</button>
-            </div>
-          </div>
-        </div>
-        <!-- END INSTITUICAO TABLE -->
-        <div>
-          <br>
-        </div>
-        <!-- NEW INSTITUICAO TABLE BEGIN -->
-        <div class="card" *ngIf="createOrEdit">
-          <div class="card-header " [class]="selectedInstituicao.id ? 'card-header-warning' : 'card-header-danger'">
-            <h4 class="card-title">{{selectedInstituicao.id ? "Editar" : "Criar"}} Instituição</h4>
-            <p class="card-category">Insira um perfil</p>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Nome" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Escopo" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Cidade" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Endereço" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Sobre</label>
-                  <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Descrição"></textarea>
-                  </mat-form-field>
-                  <!-- <div class="form-group">
+    <div class="container-fluid">
+        <app-datatable *ngIf="dataTableMap"
+                       [searchService]="instituicaoService"
+                       [tableMap]="dataTableMap"
+                       [tableTitle]="'Instituicoes'"
+                       [withCreateButton]="true"
+                       [canEdit]="true"
+                       [canDelete]="true"
+                       (create)="create()"
+                       (edit)="edit($event)"
+                       (delete)="delete($event)"
+        ></app-datatable>
+        <div class="row">
+            <div class="col-md-12">
 
-                                <div class="form-group">
-                                    <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                    <textarea class="form-control" rows="5"></textarea>
+                 <!--NEW INSTITUICAO TABLE BEGIN -->
+                <div class="card" *ngIf="createOrEdit">
+                    <div class="card-header "
+                         [class]="selectedInstituicao.id ? 'card-header-warning' : 'card-header-danger'">
+                        <h4 class="card-title">{{selectedInstituicao.id ? "Editar" : "Criar"}} Instituição</h4>
+                        <p class="card-category">Insira um perfil</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nome"
+                                               name="nome"
+                                               type="text"
+                                               [required]="true"
+                                               [(ngModel)]="selectedInstituicao.nome">
+                                    </mat-form-field>
                                 </div>
-                            </div> -->
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Escopo"
+                                               name="escopo"
+                                               type="text"
+                                               [required]="true"
+                                               [(ngModel)]="selectedInstituicao.escopo">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Cidade"
+                                               [required]="true"
+                                               name="cidade"
+                                               type="text"
+                                               [(ngModel)]="selectedInstituicao.cidade">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput
+                                               [required]="true"
+                                               placeholder="Endereço"
+                                               type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Sobre</label>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Descrição"></textarea>
+                                    </mat-form-field>
+                                    <!-- <div class="form-group">
+
+                                                  <div class="form-group">
+                                                      <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                                      <textarea class="form-control" rows="5"></textarea>
+                                                  </div>
+                                              </div> -->
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit"
+                                    (click)="selectedInstituicao.id ? submitEdit() : submitNew()"
+                                    class="btn btn-danger pull-right">{{selectedInstituicao.id ? "Editar" : "Criar"}}
+                            </button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <button mat-raised-button type="submit" (click)="createOrEdit=false" class="btn btn-danger pull-right">Criar</button>
-              <div class="clearfix"></div>
-            </form>
-          </div>
+                 <!--END NEW INSTITUICAO TABLE -->
+            </div>
         </div>
-        <!-- END NEW INSTITUICAO TABLE -->
-      </div>
     </div>
-  </div>
 </div>
