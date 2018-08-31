@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {HttpClient} from '@angular/common/http';
 import {SearchServiceInterface} from './search-service-interface';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class InstituicaoService extends ApiService implements SearchServiceInterface {
@@ -10,16 +11,23 @@ export class InstituicaoService extends ApiService implements SearchServiceInter
         super(http, 'instituicao');
     }
 
-    list(max: number, offset: number, sort?: any, search?: any) {
+    list(max: number, offset: number, sort?: any, order?: any, search?: any) {
         let params: any;
         params = {max: max, offset: offset};
-        // if (sort) {
-        //     params[`$sort[${sort.fieldName.toLowerCase()}]`] = sort.order;
-        // }
-        if (search && search.value.length > 0) {
-            params[`${search.fieldName}[$like]`] = `%${search.value}%`;
+        if (sort) {
+            params[`sort`] = sort.fieldName.toLowerCase();
+            params[`order`] = order;
         }
-        return super.get({params: params});
+        if (search && search.value.length > 0) {
+            params[`search`] = search.value;
+        }
+        return super.get({params: params}).map((item: any) => {
+            console.log(item);
+            item.data.forEach(data => {
+                data.empresas = data.empresas.length;
+            });
+            return item;
+        });
     }
 
     create(selectedInstituicao: any) {
