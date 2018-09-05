@@ -21,13 +21,13 @@ export class EmpresaService extends ApiService implements SearchServiceInterface
         if (search && search.value.length > 0) {
             params[`search`] = search.value;
         }
-        // return super.get({params: params}).map((item: any) => {
-        //     console.log(item);
-        //     item.data.forEach(data => {
-        //         data.produtos = data.produtos.length;
-        //     });
-        //     return item;
-        // });
+        return super.get({params: params}).map((item: any) => {
+            console.log(item);
+            item.data.forEach(data => {
+                data.produtos = data.produtos.length;
+            });
+            return item;
+        });
     }
 
     create(selectedEmpresa: any) {
