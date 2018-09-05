@@ -5,10 +5,10 @@ import {SearchServiceInterface} from './search-service-interface';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class EmpresaService extends ApiService implements SearchServiceInterface {
+export class ProdutoService extends ApiService implements SearchServiceInterface {
 
     constructor(http: HttpClient) {
-        super(http, 'empresa');
+        super(http, 'produto');
     }
 
     list(max: number, offset: number, sort?: any, order?: any, search?: any) {
@@ -31,17 +31,17 @@ export class EmpresaService extends ApiService implements SearchServiceInterface
         // });
     }
 
-    create(selectedEmpresa: any) {
-        return super.post({params: selectedEmpresa});
+    create(selectedProduto: any) {
+        return super.post({params: selectedProduto});
     }
 
-    delete(selectedEmpresa: any) {
+    delete(selectedProduto: any) {
         let id: number;
-        id = selectedEmpresa.id;
+        id = selectedProduto.id;
         return super.delete({id: id});
     }
 
-    edit(selectedEmpresa: any) {
-        return super.put({params: selectedEmpresa});
+    edit(selectedProduto: any) {
+        return super.put({params: selectedProduto});
     }
 }
